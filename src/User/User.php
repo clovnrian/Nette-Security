@@ -6,6 +6,7 @@ use Carrooi\Security\Authorization\Authorizator;
 use Carrooi\Security\NotImplementedException;
 use Nette\Security\IAuthorizator;
 use Nette\Security\IUserStorage;
+use Nette\Security\IAuthenticator;
 use Nette\Security\User as BaseUser;
 
 /**
@@ -25,9 +26,9 @@ class User extends BaseUser
 	 * @param \Nette\Security\IUserStorage $userStorage
 	 * @param \Carrooi\Security\Authorization\Authorizator $authorizator
 	 */
-	public function __construct(IUserStorage $userStorage, Authorizator $authorizator)
+	public function __construct(IUserStorage $userStorage, Authorizator $authorizator, IAuthenticator $authenticator = NULL)
 	{
-		parent::__construct($userStorage);
+		parent::__construct($userStorage, $authenticator);
 
 		$this->authorizator = $authorizator;
 	}
